@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrobalTires - Premium Tyres & Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #e63946;
+            --secondary: #1d3557;
+            --accent: #f1faee;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 1.8rem;
+            margin-left: 10px;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        /* Rotating Wheel in Nav */
+        .rotating-wheel {
+            display: inline-block;
+            margin-right: 10px;
+            animation: rotate 4s linear infinite;
+            font-size: 1.5rem;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(45deg, #f1faee, #a8dadc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            max-width: 80%;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .product-features {
+            margin-bottom: 20px;
+        }
+
+        .product-features li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #555;
+            list-style-type: none;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .product-features li:before {
+            content: '✓';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .product-cta {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .product-cta:hover {
+            background: var(--primary);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="rotating-wheel">
+                    <i class="fas fa-tire"></i>
+                </div>
+                <h1>Global<span>Tires</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Our Premium Tyre Collection</h2>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Best Seller</span>
+                        <img src="https://placehold.co/300x200/1d3557/ffffff?text=All-Season+Tyre" alt="All-Season Tyre">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Passenger</div>
+                        <h3 class="product-title">All-Season Performance</h3>
+                        <p class="product-description">Perfect for year-round driving with excellent wet and dry traction.</p>
+                        <ul class="product-features">
+                            <li>80,000 km warranty</li>
+                            <li>Fuel efficient</li>
+                            <li>Quiet ride technology</li>
+                            <li>All-weather capable</li>
+                        </ul>
+                        <div class="product-price">$149.99</div>
+                        <a href="#" class="product-cta">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">New</span>
+                        <img src="https://placehold.co/300x200/e63946/ffffff?text=Winter+Tyre" alt="Winter Tyre">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Winter</div>
+                        <h3 class="product-title">Arctic Grip Winter</h3>
+                        <p class="product-description">Superior traction on snow and ice with special compound for cold weather.</p>
+                        <ul class="product-features">
+                            <li>Studdable design</li>
+                            <li>Deep snow traction</li>
+                            <li>Ice-biting technology</li>
+                            <li>Severe snow rated</li>
+                        </ul>
+                        <div class="product-price">$169.99</div>
+                        <a href="#" class="product-cta">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://placehold.co/300x200/1d3557/ffffff?text=Truck+Tyre" alt="Truck Tyre">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Truck & SUV</div>
+                        <h3 class="product-title">Rugged Terrain</h3>
+                        <p class="product-description">Designed for light trucks and SUVs with aggressive off-road capability.</p>
+                        <ul class="product-features">
+                            <li>Reinforced sidewalls</li>
+                            <li>Mud and snow traction</li>
+                            <li>Durable construction</li>
+                            <li>All-terrain design</li>
+                        </ul>
+                        <div class="product-price">$219.99</div>
+                        <a href="#" class="product-cta">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Eco</span>
+                        <img src="https://placehold.co/300x200/1d3557/ffffff?text=Eco+Tyre" alt="Eco Tyre">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Eco-Friendly</div>
+                        <h3 class="product-title">EcoGreen Efficiency</h3>
+                        <p class="product-description">Low rolling resistance design for improved fuel economy and reduced emissions.</p>
+                        <ul class="product-features">
+                            <li>15% better fuel economy</li>
+                            <li>Longer tread life</li>
+                            <li>Reduced carbon footprint</li>
+                            <li>Quiet operation</li>
+                        </ul>
+                        <div class="product-price">$179.99</div>
+                        <a href="#" class="product-cta">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://placehold.co/300x200/e63946/ffffff?text=Performance+Tyre" alt="Performance Tyre">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Performance</div>
+                        <h3 class="product-title">UltraGrip Sport</h3>
+                        <p class="product-description">High-performance tires for sports cars with exceptional cornering ability.</p>
+                        <ul class="product-features">
+                            <li>Enhanced handling</li>
+                            <li>Asymmetric tread pattern</li>
+                            <li>High-speed rated</li>
+                            <li>Sporty appearance</li>
+                        </ul>
+                        <div class="product-price">$199.99</div>
+                        <a href="#" class="product-cta">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">Value</span>
+                        <img src="https://placehold.co/300x200/1d3557/ffffff?text=Touring+Tyre" alt="Touring Tyre">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Touring</div>
+                        <h3 class="product-title">Comfort Touring</h3>
+                        <p class="product-description">Premium touring tire with focus on comfort, noise reduction, and longevity.</p>
+                        <ul class="product-features">
+                            <li>100,000 km warranty</li>
+                            <li>Comfort-optimized</li>
+                            <li>All-season performance</li>
+                            <li>Quiet ride technology</li>
+                        </ul>
+                        <div class="product-price">$159.99</div>
+                        <a href="#" class="product-cta">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Existing Get in Touch Section would go here -->
+</body>
+</html>
