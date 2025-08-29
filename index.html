@@ -328,7 +328,7 @@
                 <div class="rotating-wheel">
                     <i class="fas fa-tire"></i>
                 </div>
-                <h1>Global<span>Tires</span></h1>
+                <h1>Global<span>Tyres</span></h1>
             </div>
             <nav>
                 <ul>
@@ -419,8 +419,8 @@
             
             if (method === 'whatsapp') {
                 // Send via WhatsApp
-                const whatsappNumber = '+260963857886';
-                const text = `Name: ${name}%0AEmail: ${email}%0ASubject: ${subject}%0AMessage: ${message}`;
+                const whatsappNumber = '+260954155737';
+                const text = `Name: ${name}Email: ${email}Subject: ${subject}Message: ${message}`;
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
                 
                 window.open(whatsappUrl, '_blank');
@@ -430,7 +430,7 @@
                 // Send via Email
                 const emailAddress = 'globaltyres@outlook.com';
                 const mailSubject = subject || 'Message from Contact Form';
-                const mailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+                const mailBody = `Name: ${name}Email: ${email} ${message}`;
                 const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
                 
                 window.location.href = mailtoLink;
